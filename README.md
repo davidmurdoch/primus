@@ -17,13 +17,13 @@ npm install primus --save
 ### Getting started
 
 Primus doesn't ship with real-time frameworks as dependencies, it assumes that
-you as user adds them your self as a dependency. This is done to keep the module
-as light weight as possible. This works because `require` in will walk through
-your directories searching for `node_module` folders that have these matching
-dependencies.
+you, as the user, add them your self as a dependency. This is done to keep the 
+module as light weight as possible. This works because `require` will walk 
+through your directories searching for `node_module` folders that have these 
+matching dependencies.
 
-Primus needs to be "attached" to a HTTP compatible server. These includes the
-build in `http` and `https` servers but also the `spdy` module as it has the
+Primus needs to be "attached" to a HTTP compatible server. These include the
+built in `http` and `https` servers but also the `spdy` module as it has the
 same API as node servers. Creating a new Primus instance is relatively straight
 forward:
 
@@ -37,7 +37,7 @@ var server = http.createServer(/* request handler */)
   , primus = new Primus(server, {/* options */});
 ```
 
-In addition to support different frameworks we've also made it possible to use
+In addition to supporting different frameworks we've also made it possible to use
 custom encoding and decoding libraries. We're using `JSON` by default but you
 could also use `msgpack` or `JSONH` for example (but these parsers need to be
 supported by Primus, so check out the parser folder for examples). To set parser
@@ -75,19 +75,19 @@ primus.on('connection', function (spark) {
 Disconnects are announced using a `disconnection` event:
 
 ```js
-primus.on('disconnected', funciton (spark) {
+primus.on('disconnected', function (spark) {
   // the spark that disconnected
 });
 ```
 
-The `spark` the actual real-time socket/connection. Sparks have a really low
+The `spark` is the actual real-time socket/connection. Sparks have a really low
 level interface and only expose a couple properties that are cross engine
 supported. The interface is modeled towards a Nodejs stream compatible
 interface.
 
 #### spark.headers
 
-The `spark.headers` property contains contains the headers of either the request
+The `spark.headers` property contains the headers of either the request
 that started a handshake with the server or the headers of the actual real-time
 connection. This depends on the module you are using.
 
@@ -102,7 +102,7 @@ useless to you and you should probably be checking the `spark.headers` for
 
 You can use the `spark.write` method to send data over the socket. The data is
 automatically encoded for you using the `parser` that you've set while creating
-the Primus instance. This method always returns `true` so back pressuere isn't
+the Primus instance. This method always returns `true` so back pressure isn't
 handled.
 
 ```js
@@ -111,7 +111,7 @@ spark.write({ foo: 'bar' });
 
 #### spark.end()
 
-The `spark.end()` closes the connection.
+The `spark.end()` method closes the connection.
 
 #### spark.emits(event, parser)
 
@@ -167,13 +167,13 @@ transformer, we just `toLowerCase()` everything.
 
 All `0.x.x` releases should be considered unstable and not ready for production.
 The version number is layed out as: `major.minor.patch` and tries to follow
-semver as closely as possible but this is how we use our version numbering:
+semver as closely as possible; this is how we use our version numbering:
 
 <dl>
   <dt>major</dt>
   <dd>
     <p>
-      A major and possible breaking change has been made in the primus core.
+      A major and possible breaking change has been made in the Primus core.
       These changes are not backwards compatible with older versions.
     </p>
   </dd>
@@ -181,7 +181,7 @@ semver as closely as possible but this is how we use our version numbering:
   <dd>
     <p>
       New features are added or a big change has happend with one of the
-      real-time libraries that we've supporting.
+      real-time libraries that we're supporting.
     </p>
   </dd>
   <dt>patch</dt>
